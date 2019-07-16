@@ -24,7 +24,7 @@ int check(int x,int y){
 }
 
 int bfs(node n1,node n2){
-	int res;
+	int res=0;
 	memset(v,0,sizeof(v));
 	while(!q.empty()) q.pop();
 	v[n1.x][n1.y]=1;
@@ -33,20 +33,19 @@ int bfs(node n1,node n2){
 	n2.step=0;
 	q.push(n1);
 	q.push(n2);
-	node n3;
 	while(!q.empty()){
-		n2=q.front();
+		node n3,n4;
+		n3=q.front();
 		q.pop();
-		//cout << n2.x << " " << n2.y << " " << n2.step << endl;
-		if(q.empty()&&n2.step!=0)
-			res=n2.step;
+		if(q.empty()&&n3.step!=0)
+			res=n3.step;
 		for(int i=0;i<4;i++){
-			n3.x=n2.x+dx[i];
-			n3.y=n2.y+dy[i];
-			if(check(n3.x,n3.y)){
-				n3.step=n2.step+1;
-				v[n3.x][n3.y]=1;
-				q.push(n3);
+			n4.x=n3.x+dx[i];
+			n4.y=n3.y+dy[i];
+			if(check(n4.x,n4.y)){
+				n4.step=n3.step+1;
+				v[n4.x][n4.y]=1;
+				q.push(n4);
 			}
 		}
 	}
@@ -63,6 +62,7 @@ int main(){
 	int T,cs=1,sum,ans,mina;
 	cin>>T;
 	while(T--){
+		int flag=0;
 		mina=maxa;
 		sum=0;
 		cin >> n >> m;
@@ -81,14 +81,19 @@ int main(){
 //				cout << "i: " << nd[i].x << " " << nd[i].y << endl;
 //				cout << "j: " << nd[j].x << " " << nd[j].y << endl;
 				ans=bfs(nd[i],nd[j]);
+				flag=1;
 				//cout << ans << endl;
 				mina=mina>ans?ans:mina;
 			}
 		}
-		if(mina==maxa)
+		if(mina==maxa&&flag==1)
 			cout << "Case " << cs << ": " << -1 << endl;
-		else
-			cout << "Case " << cs << ": " << mina << endl;
+		else{
+			if(mina==maxa)
+				cout << "Case " << cs << ": " << 0 << endl;
+			else
+				cout << "Case " << cs << ": " << mina << endl;
+		}
 		cs++;
 	}
 	
