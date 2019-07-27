@@ -6,20 +6,23 @@ Input
 输入数据的第一部分是一张单词表 , 每行一个单词 , 单词的长度不超过10 , 它们代表的是老师交给Ignatius统计的单词 ,一个空行代表单词表的结束.第二部分是一连串的提问, 每行一个提问 , 每个提问都是一个字符串 . 
 
 注意 : 本题只有一组测试数据 , 处理到文件结束 .
+
 Output
 对于每个提问 , 给出以该字符串为前缀的单词的数量 .
+
 Sample Input
 	
 banana 
 band 
 bee 
-absolute acm ba 
+absolute
+acm
+
+ba 
 b 
-band abc
+band
+abc
 
-
-
- 
 Sample Output
 
 2 
